@@ -1,5 +1,7 @@
 # tsps-dashlet-tpl
 
+![Java CI](https://github.com/sentrysoftware/tsps-dashlet-tpl/workflows/Java%20CI/badge.svg)
+
 A developer template showing how to create new *Dashlets* for the *Dashboards* in BMC TrueSight Presentation Server. This project builds:
 
 * A `my-dashlets.zip` plugin for TSPS, containing:
