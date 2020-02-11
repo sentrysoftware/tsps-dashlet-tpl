@@ -1,0 +1,74 @@
+<form role="form">
+
+	<section class="form-group edit-bg dashboard-settings dashlet-simple-edit">
+
+		<!-- Bootstrap 3 style inputs, with BMC's dashlet-config-* overlay -->
+
+		<!-- Title -->
+		<!-- The value is stored in $ctrl.dashlet, and not $ctrl.config like the rest -->
+		<div class="col-sm-12 infrApp-dashlet-config-row">
+			<div class="col-sm-12 infrApp-dashlet-config-column-container">
+				<div class="col-sm-12 col-md-6 infrApp-dashlet-config-column">
+					<label class="dashlet-config-label" for="dashletTitle">{{::'dashboard.title' | translate}}</label>
+					<input
+						type="text"
+						class="form-control dashlet-config-input"
+						ng-model="$ctrl.dashlet.title"
+						placeholder="{{::'dashlets.default.placeholder.dashletTitle' | translate}}"
+						required
+					>
+				</div>
+			</div>
+		</div>
+
+		<!-- Message -->
+		<!-- Regular value that is stored in $ctrl.config, and that will be saved and then passed to the dashlet -->
+		<!-- The {{:: '<label>' | translate }} will search for '<label>' declared in src/main/resources/en.json -->
+		<div class="col-sm-12 infrApp-dashlet-config-row">
+			<div class="col-sm-12 infrApp-dashlet-config-column-container">
+				<div class="col-sm-12 infrApp-dashlet-config-column">
+					<label class="dashlet-config-label" for="message">{{::'${project.groupId}.${project.artifactId}.simpleDashlet.edit.message' | translate}}</label>
+					<input
+						type="text"
+						class="form-control dashlet-config-input"
+						ng-model="$ctrl.config.message"
+						placeholder="{{::'${project.groupId}.${project.artifactId}.simpleDashlet.edit.message.placeholder' | translate}}"
+					>
+				</div>
+			</div>
+		</div>
+
+		<!-- Little control for the height of the dashlet -->
+		<div class="col-sm-12 infrApp-dashlet-config-row">
+			<div class="col-sm-12 infrApp-dashlet-config-column-container">
+				<div class="col-sm-3 col-xs-6 infrApp-dashlet-config-column">
+					<dashlet-height config="$ctrl.dashlet" allowed="[1, 2, 3]"></dashlet-height>
+				</div>
+			</div>
+		</div>
+
+		<!-- Refresh rate control, as done in other TSIM dashlets -->
+		<!-- Sets $ctrl.dashlet.refreshRactor directly -->
+		<!-- Options are set in $ctrl.refreshRateItems -->
+		<div class="col-sm-12 infrApp-dashlet-config-row">
+			<div class="col-sm-12 infrApp-dashlet-config-column-container">
+				<div class="col-sm-6 col-md-2 infrApp-dashlet-config-column">
+					<label for="refreshRate">{{::'infraApp.dashlets.refreshRate' | translate }}</label>
+					<select
+						class="form-control"
+						ng-model="$ctrl.dashlet.refreshFactor"
+						ng-options="refreshOption.value as (refreshOption.label | translate) for refreshOption in $ctrl.refreshRateItems"
+					></select>
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+	<!-- Mandatory section with the [Apply] and [Cancel] buttons -->
+	<!-- DO NOT CHANGE -->
+	<section class="section-buttons">
+		<bmc-button type="button" class="btn btn-primary" ng-click="$ctrl.save()">{{::'core.apply' | translate}}</bmc-button>
+		<bmc-button type="button" class="btn" ng-click="$ctrl.cancel()">{{::'core.cancel' | translate}}</bmc-button>
+	</section>
+</form>

@@ -1,0 +1,36 @@
+<assembly>
+
+	<id>tsps</id>
+
+	<formats>
+		<format>zip</format>
+	</formats>
+
+	<baseDirectory>${project.artifactId}</baseDirectory>
+	<includeBaseDirectory>true</includeBaseDirectory>
+
+	<files>
+
+		<!-- app contains the war -->
+		<file>
+			<source>${project.build.directory}/${project.artifactId}-${project.version}.war</source>
+			<destName>${project.artifactId}.war</destName>
+			<outputDirectory>app</outputDirectory>
+			<filtered>false</filtered>
+		</file>
+
+	</files>
+
+	<fileSets>
+
+		<!-- lib, conf and version.txt -->
+		<fileSet>
+			<directory>${project.basedir}/src/main/tsps-plugin</directory>
+			<outputDirectory></outputDirectory>
+			<useDefaultExcludes>true</useDefaultExcludes>
+			<filtered>true</filtered>
+		</fileSet>
+
+	</fileSets>
+
+</assembly>

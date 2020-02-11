@@ -1,0 +1,40 @@
+/**
+ * Some custom CSS
+ **/
+
+/* Suppress silly padding from dashlet configuration */
+/* You should enforce the same for all your dashlets, when using BMC styling */
+.dashboard-settings.dashlet-example-edit,
+.dashboard-settings.dashlet-simple-edit {
+	padding: 0;
+}
+
+/* Make sure the dropdown menu is displayed */
+.dashlet-example-edit .dropdown-menu {
+	display: unset;
+}
+
+/* Remove unnecessary horizontal padding in the example, caused by the mandatory use of col-sm-12 */
+/* You should enforce the same for all your dashlets, when using BMC styling */
+.dashlet-example.col-sm-12,
+.dashlet-simple.col-sm-12 {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+/* Remove unwanted space from progress bars in the example */
+.dashlet-example .progress {
+	margin-bottom: 0;
+}
+
+/* Adjust the size of the columns in the table */
+.dashlet-example .column-monitor {
+	width: 30%;
+	max-width: 300px;
+	min-width: 80px;
+}
+
+.dashlet-example .column-events {
+	width: 70%;
+	min-width: 200px;
+}

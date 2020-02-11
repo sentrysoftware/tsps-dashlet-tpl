@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- The below is actually NOT taken into account -->
+<Context antiJARLocking="true" path="/${project.artifactId}"/>

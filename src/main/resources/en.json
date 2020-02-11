@@ -1,0 +1,18 @@
+{
+	"${project.groupId}.${project.artifactId}.simpleDashlet.title": "Simple Dashlet",
+	"${project.groupId}.${project.artifactId}.simpleDashlet.description": "The purpose of this dashlet is to provide the basic structure to create new dashlets for BMC TrueSight Presentation Server",
+	"${project.groupId}.${project.artifactId}.simpleDashlet.globalFilterSettings": "Global Filter Settings",
+	"${project.groupId}.${project.artifactId}.simpleDashlet.timePeriod": "Time Period",
+	"${project.groupId}.${project.artifactId}.simpleDashlet.application": "Selected Application",
+	"${project.groupId}.${project.artifactId}.simpleDashlet.edit.message": "Message to the World",
+	"${project.groupId}.${project.artifactId}.simpleDashlet.edit.message.placeholder": "Hello, World!...",
+
+	"${project.groupId}.${project.artifactId}.exampleDashlet.title": "Example Dashlet",
+	"${project.groupId}.${project.artifactId}.exampleDashlet.description": "The purpose of this dashlet is to show an practical example that leverages BMC TSPS REST API to query and display data.",
+	"${project.groupId}.${project.artifactId}.exampleDashlet.edit.device": "Select a Device",
+	"${project.groupId}.${project.artifactId}.exampleDashlet.edit.device.help": "Type a device name and select from the list.",
+	"${project.groupId}.${project.artifactId}.exampleDashlet.deviceNotFound": "Could not find the corresponding device.",
+	"${project.groupId}.${project.artifactId}.exampleDashlet.configError": "Configuration of the dashlet is broken :-(",
+	"${project.groupId}.${project.artifactId}.exampleDashlet.monitorTitle": "Monitors",
+	"${project.groupId}.${project.artifactId}.exampleDashlet.eventsTitle": "Events"
+}

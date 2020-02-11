@@ -1,0 +1,72 @@
+<form role="form">
+
+	<section class="form-group edit-bg dashboard-settings dashlet-example-edit">
+
+		<!-- Typical styling of dashlet configuration -->
+		<div class="col-sm-12 infrApp-dashlet-config-row">
+			<div class="col-sm-12 infrApp-dashlet-config-column-container">
+
+				<!-- Little note saying we don't handle global filter -->
+				<div class="col-sm-12 infrApp-dashlet-config-column">
+					<span id="noteIcon" class="fi fi-note-filled major-color em3"></span>
+					<label>{{::'dashboard.dashlet.no.support.for.global.application.filter' | translate}}</label>
+				</div>
+			</div>
+		</div>
+
+		<!-- Control that lets you select a device from a list dynamically populated as you type -->
+		<!-- For some reason, requires extra CSS to ensure the .dropdown-menu has its 'display' property not set to 'none' -->
+		<div class="col-sm-12 infrApp-dashlet-config-row">
+			<div class="col-sm-12 infrApp-dashlet-config-column-container">
+				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 infrApp-dashlet-config-column">
+					<label class="dashlet-config-label" for="message">{{::'${project.groupId}.${project.artifactId}.exampleDashlet.edit.device' | translate}}</label>
+					<input
+						type="text"
+						class="form-control dashlet-config-input"
+						ng-model="$ctrl.config.device"
+						ng-model-options="{ debounce: 500 }"
+						placeholder="Device hostname..."
+						uib-typeahead="device.name for device in $ctrl.searchDevices($viewValue)"
+						typeahead-loading="loadingDevices"
+						typeahead-no-results="noMatchingDevice"
+						required
+					>
+					<span class="help-block">{{::'${project.groupId}.${project.artifactId}.exampleDashlet.edit.device.help' | translate}}</span>
+				</div>
+			</div>
+		</div>
+
+		<!-- Little control for the height of the dashlet -->
+		<div class="col-sm-12 infrApp-dashlet-config-row">
+			<div class="col-sm-12 infrApp-dashlet-config-column-container">
+				<div class="col-sm-3 infrApp-dashlet-config-column">
+					<dashlet-height config="$ctrl.dashlet" allowed="[1, 2, 3]"></dashlet-height>
+				</div>
+			</div>
+		</div>
+
+		<!-- Refresh rate control, as done in other TSIM dashlets -->
+		<!-- Sets $ctrl.dashlet.refreshRactor directly -->
+		<!-- Options are set in $ctrl.refreshRateItems -->
+		<div class="col-sm-12 infrApp-dashlet-config-row">
+			<div class="col-sm-12 infrApp-dashlet-config-column-container">
+				<div class="col-sm-6 col-md-2 infrApp-dashlet-config-column">
+					<label for="refreshRate">{{::'infraApp.dashlets.refreshRate' | translate }}</label>
+					<select
+						class="form-control"
+						ng-model="$ctrl.dashlet.refreshFactor"
+						ng-options="refreshOption.value as (refreshOption.label | translate) for refreshOption in $ctrl.refreshRateItems"
+					></select>
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+	<!-- Mandatory section with the [Apply] and [Cancel] buttons -->
+	<!-- DO NOT CHANGE -->
+	<section class="section-buttons">
+		<bmc-button type="button" class="btn btn-primary" ng-click="$ctrl.save()">{{::'core.apply' | translate}}</bmc-button>
+		<bmc-button type="button" class="btn" ng-click="$ctrl.cancel()">{{::'core.cancel' | translate}}</bmc-button>
+	</section>
+</form>

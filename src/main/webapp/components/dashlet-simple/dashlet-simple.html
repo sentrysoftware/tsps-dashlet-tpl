@@ -1,0 +1,21 @@
+<!-- col-sm-12 is kinda mandatory here to avoid unnecessary scrollbars... -->
+<div class="dashlet-simple col-sm-12">
+
+	<!-- Hello, World! -->
+	<div class="alert alert-success">
+		<!-- The message configured in the dashlet is stored in $ctrl.config -->
+		<!-- If none configured, we'll display 'Hello, World!' -->
+		{{$ctrl.config.message || 'Hello, World!'}}
+	</div>
+
+	<!-- What is in the global filter? -->
+	<h4>{{::'${project.groupId}.${project.artifactId}.simpleDashlet.globalFilterSettings' | translate}}</h4>
+	<hr>
+	<p>
+		{{::'${project.groupId}.${project.artifactId}.simpleDashlet.timePeriod' | translate}}: <b>{{$ctrl.dashlet.globalFilter.timeInfo}} minutes</b>
+	</p>
+	<p>
+		{{::'${project.groupId}.${project.artifactId}.simpleDashlet.application' | translate}}: <b>{{$ctrl.dashlet.globalFilter.application.name || 'Unset'}}</b>
+	</p>
+
+</div>

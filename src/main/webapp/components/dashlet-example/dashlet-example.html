@@ -1,0 +1,48 @@
+<!-- col-sm-12 is kinda mandatory here to avoid unnecessary scrollbars... -->
+<div class="dashlet-example col-sm-12" cg-busy="$ctrl.deviceSearchPromise">
+
+	<!-- Show only if no config error -->
+	<div ng-if="!$ctrl.configError">
+
+		<!-- Device list of monitors -->
+		<div ng-if="!$ctrl.deviceNotFound" cg-busy="$ctrl.getMonitorsPromise">
+
+			<table class="table table-condensed table-striped table-fixed">
+				<thead>
+					<tr>
+						<th class="column-monitor">{{$ctrl.monitorList.length}} {{::'${project.groupId}.${project.artifactId}.exampleDashlet.monitorTitle' | translate}}</th>
+						<th class="column-events">{{$ctrl.totalEvents}} {{::'${project.groupId}.${project.artifactId}.exampleDashlet.eventsTitle' | translate}}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="monitor in $ctrl.monitorList track by (monitor.serverId + '/' + monitor.id)">
+						<td class="column-monitor">
+							<a ng-href="#/monitors/{{monitor.typeId}}+{{monitor.id}}/{{monitor.serverId}}/perfOverviewTab">{{monitor.name}}</a>
+						</td>
+						<td class="column-events">
+							<uib-progress max="$ctrl.maxEvents">
+								<uib-bar
+									ng-repeat="severity in monitor.eventDetails.severityDetails track by $index"
+									value="severity.count"
+									type="{{$ctrl.severity2Css(severity.severity)}}"
+									title="{{$ctrl.severity2I18n(severity.severity) + ': ' + severity.count}}"
+								><span ng-hide="severity.count <= $ctrl.maxEvents / 20">{{severity.count}}</span></uib-bar>
+							</uib-progress>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<!-- Error message if device could not be found -->
+		<div ng-if="$ctrl.deviceNotFound">
+			<message type="note">{{::'${project.groupId}.${project.artifactId}.exampleDashlet.deviceNotFound' | translate}}</message>
+		</div>
+
+	</div>
+
+	<!-- Error message if dashlet is misconfigured -->
+	<div ng-if="$ctrl.configError">
+		<message type="note">{{::'${project.groupId}.${project.artifactId}.exampleDashlet.configError' | translate}}</message>
+	</div>
+</div>
