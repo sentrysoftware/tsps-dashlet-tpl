@@ -1,10 +1,14 @@
-# tsps-dashlet-tpl
+# Create New Dashlets for BMC TrueSight Presentation Server
 
-A developer template showing how to create new *Dashlets* for the *Dashboards* in BMC TrueSight Presentation Server. This project builds:
+![Build](https://github.com/sentrysoftware/tsps-dashlet-tpl/workflows/Java%20CI/badge.svg)
+
+A development guide showing how to create new *Dashlets* for the *Dashboards* in BMC TrueSight Presentation Server. This project builds:
 
 * A `my-dashlets.zip` plugin for TSPS, containing:
   * The **Simple Dashlet**, which is a good start to create your own *dashlet*.
   * The **Example Dashlet**, which is a good example on how to leverage the TSPS REST API to extract data and then use AngularJS and the TSPS frontend framework to display this data.
+
+![Dashboard in BMC TrueSight Presentation Server showing our new Dashlets](docs/images/dashboard-1.png)
 
 ## Prerequisites
 
@@ -51,6 +55,8 @@ Note: The above examples assume the `target/my-dashlets-1.0.00-SNAPSHOT.zip` fil
 
 TSPS is automatically restarted. Refresh your browser after a minute and your new *Dashlets* are now listed as available when creating or editing a *Dashboard*! :-)
 
+![New exciting options when adding a Dashlet to a Dashboard in TSPS](docs/images/add-dashlet-1.png)
+
 ## The Internals
 
 ### The Build
@@ -96,9 +102,10 @@ Each *AngularJS Component* takes 2 attributes:
 | File, Directory | Description |
 |---|---|
 | **pom.xml**    | Maven project settings   |
+| **docs/**   | Documentation files  |
 | **src/**   | Source files  |
 | **src/main/java/**  | Java source files  |
-| **src/main/java/com/bmc/  | Minimal classes that emulate the TSPS Java internal API so that our own code compiles properly. The resulting **\*.class** files are excluded from the plugin  |
+| **src/main/java/com/bmc/**  | Minimal classes that emulate the TSPS Java internal API so that our own code compiles properly. The resulting **\*.class** files are excluded from the plugin  |
 | **src/main/resources/en.json**  | Localized user-facing strings (English)  |
 | **src/main/tsps-plugin/**  | Metadata required to build the TSPS plugin. **DO NOT MODIFY**  |
 | **src/main/webapp/**  | Web front-end stuff, *AngularJS* module  |
@@ -113,7 +120,7 @@ Each *AngularJS Component* takes 2 attributes:
 
 First, you need to get the code.
 
-Fork this repository (because you're not going to provide changes to **this** example, you'll develop your own stuff) and then clone it. If you're familiar with *Git* and *GitHub*, that will be easy enough.
+Fork this repository (because you're not going to provide changes to **this** example, you'll develop your own stuff) and then clone it. If you're familiar with *Git* and *GitHub*, that will be easy enough. As this repository is marked as *Template*, you can use the [[Use this template]](generate) button.
 
 Or you can simply download the source code from *GitHub* as an archive file that you uncompress on your system.
 
@@ -146,6 +153,8 @@ It is important to change the package to something unique, that will not conflic
 Note: The package name does not need to strictly match with the Maven **pom.xml** coordinates.
 
 You can use Eclipse to rename the package, change the directory structure and update all references accordingly, in a single operation.
+
+![Eclipse makes it easy to refactoring process quite easy](docs/images/eclipse-refactor-1.png)
 
 ### 4. Build
 
@@ -241,6 +250,22 @@ Both components have 2 attributes that are set at runtime and are available in b
 The `<dashlet-simple-edit>` component sets the properties in `$ctrl.config` and `$ctrl.dashlet` according to what the user sets in the UI, while `<dashlet-simple-edit>` reads these objects to show the proper content in the *dashlet*.
 
 The code for *Simple Dashlet* and *Example Dashlet* is heavily documented inline. Refer to the corresponding **.js** and **.html** files for more details about *dashlets* work.
+
+### Typical Configuration Controls
+
+The `<dashlet-simple-edit>` component shows how to let the user configure basic *dashlet* settings. The *JavaScript* part is minimal as most of the job is performed directly in the HTML template:
+
+* Title
+* Height
+* Automatic Refresh
+
+![The Simple Dashlet Configuration](docs/images/simple-dashlet-edit-1.png)
+
+The `<dashlet-example-edit>` component shows how to implement more advanced stuff, like a text input that auto-fills with suggestions resulting from a REST API call (suggesting matching devices in this case).
+
+![The Example Dashlet Configuration showcases advanced UI techniques, like uib-typeahead](docs/images/example-dashlet-edit-1.png)
+
+Examine carefully the code of both components to understand how to implement something similar in your own *dashlets*!
 
 ### What Fancy Libraries Can I Use in Dashlets?
 
